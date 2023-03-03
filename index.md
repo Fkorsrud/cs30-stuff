@@ -2,5 +2,6 @@
 
 ## Demos
 - [Moving rectangle](movingrectangle)
+- [Generative art diagonal linwe](generativeart)
 
 ## Projects
