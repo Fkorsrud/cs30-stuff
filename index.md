@@ -2,6 +2,7 @@
 
 ## Demos
 - [Moving rectangle](movingrectangle)
-- [Generative art diagonal linwe](generativeart)
+- [Generative art diagonal line](generativeart)
 
 ## Projects
+
