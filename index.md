@@ -3,6 +3,8 @@
 ## Demos
 - [Moving rectangle](movingrectangle)
 - [Generative art diagonal line](generativeart)
+- [Bouncing balls](bouncingballs)
+- [cubic disarray](cubicdisarray)
 
 ## Projects
 
