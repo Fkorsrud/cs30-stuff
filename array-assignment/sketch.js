@@ -7,7 +7,7 @@
 
 let circles = [];
 let maxDiameter;
-let sizeChange = 50;
+let sizeChange = 150;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -17,9 +17,10 @@ function setup() {
 
 function draw() {
   background(220);
-  for (let i =0; i < circles.length; i++){
-    displayCircles(circles[i]);
-  }
+  displayCircles(circles[4]);
+  // for (let i =0; i < circles.length; i++){
+  //   displayCircles(circles[i]);
+  // }
 }
 
 
@@ -29,7 +30,6 @@ function spawnCircle(diaMeter){
     r: diaMeter/2,
   };
   circles.push(someCirle);
-
 }
 
 function addBoxes() {
@@ -45,12 +45,13 @@ function addBoxes() {
 }
 
 function displayCircles(theCircle){
-  let numberofPoints = theCircle.d / 5;
+  let numberofPoints = theCircle.d /5;
   beginShape();
-  for (let i = numberofPoints; i> 0; i--){
+  fill(random(255), random(255), random(255));
+  for (let i = numberofPoints; i > 0; i--){
     push();
     rotate(i *(360/numberofPoints));
-    curveVertex(0, 0 + theCircle.diaMeter);
+    curveVertex(0, 0 + theCircle.r);
     pop();
   }
   endShape();
