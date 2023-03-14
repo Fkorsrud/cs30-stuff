@@ -5,6 +5,7 @@
 - [Generative art diagonal line](generativeart)
 - [Bouncing balls](bouncingballs)
 - [cubic disarray](cubicdisarray)
+- [Terrain Generation](terrain)
 
 ## Projects
 - [Arrays and Object Notation](array-assignment)
