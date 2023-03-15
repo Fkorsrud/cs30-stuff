@@ -21,7 +21,7 @@ function setup() {
 
 function draw() {
   
-  // displayCircles(circles[0]);
+
   
 }
 
@@ -47,25 +47,36 @@ function addBoxes() {
 }
 
 function displayCircles(theCircle){
-  let numberofPoints = theCircle.d /5;
-  fill(random(255), random(255), random(255));
+  let numberofPoints = 30;
   
-  for (let i = numberofPoints; i > 0; i--){
-    push();
-    
-    rotate(i *(360/numberofPoints));
-    point(0, 0 + theCircle.r + randomGaussian(15));
-    pop();
-  }
- 
-
-  // beginShape();
-  // fill(random(255), random(255), random(255));
+  
   // for (let i = numberofPoints; i > 0; i--){
   //   push();
   //   rotate(i *(360/numberofPoints));
-  //   curveVertex(0, 0 + theCircle.r);
+  //   point(0, theCircle.r + random(15));
   //   pop();
   // }
-  // endShape();
+ 
+  fill(random(255), random(255), random(255));
+  beginShape();
+  curveVertex(0, theCircle.r);
+  curveVertex(0, theCircle.r);
+  for (let i = 0; i < numberofPoints; i++){
+    let r = theCircle.r + random(theCircle.r / 5);
+    let xValue = sin(360/numberofPoints*i) * r;
+    let yValue = cos(360/numberofPoints*i) * r;
+    curveVertex(xValue,yValue);
+
+  }
+  // for (let i = numberofPoints; i > 0; i--){
+  //   push();
+    
+  //   rotate(i *(360/numberofPoints-1));
+  //   point(0, theCircle.r);
+  //   curveVertex(0, theCircle.r + theCircle.r * random());
+  //   pop();
+  // }
+  curveVertex(0, theCircle.r);
+  curveVertex(0, theCircle.r);
+  endShape();
 }
