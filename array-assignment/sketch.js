@@ -3,38 +3,42 @@
 // Date
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// I made custom shapes.
+
 
 let circles = [];
 let maxDiameter;
 let sizeChange = 150;
 
+
 function setup() {
+  angleMode(DEGREES);
   createCanvas(windowWidth, windowHeight);
-  background(220);
-  addBoxes();
+  background(random(255), random(255), random(255));
+  addCircles();
   translate(width/2, height/2);
   for (let i =0; i < circles.length; i++){
     displayCircles(circles[i]);
   }
+  
 }
 
 function draw() {
   
-
-  
 }
-
 
 function spawnCircle(diaMeter){
   let someCirle = {
     d: diaMeter,
     r: diaMeter/2,
+    red: random(255),
+    green: random(255),
+    blue: random(255),
   };
   circles.push(someCirle);
 }
 
-function addBoxes() {
+function addCircles() {
   if (width >= height){
     maxDiameter = width;
   }
@@ -43,40 +47,30 @@ function addBoxes() {
   }
   for (let i = maxDiameter; i > 5; i-= sizeChange){
     spawnCircle(i);
+    if (i > 100){
+      sizeChange = i*2/10;
+    }
   }
 }
 
 function displayCircles(theCircle){
-  let numberofPoints = 30;
+  let numberofPoints = theCircle.d/5;
+  let angle = 360/numberofPoints;
   
-  
-  // for (let i = numberofPoints; i > 0; i--){
-  //   push();
-  //   rotate(i *(360/numberofPoints));
-  //   point(0, theCircle.r + random(15));
-  //   pop();
-  // }
- 
-  fill(random(255), random(255), random(255));
+  noStroke();
+  fill(theCircle.red, theCircle.green, theCircle.blue);
   beginShape();
-  curveVertex(0, theCircle.r);
-  curveVertex(0, theCircle.r);
-  for (let i = 0; i < numberofPoints; i++){
-    let r = theCircle.r + random(theCircle.r / 5);
-    let xValue = sin(360/numberofPoints*i) * r;
-    let yValue = cos(360/numberofPoints*i) * r;
-    curveVertex(xValue,yValue);
-
+  let starty = random(theCircle.r/5);
+  curveVertex(0, theCircle.r+ starty);
+  curveVertex(0, theCircle.r + starty);
+  for (let i = numberofPoints; i > 0; i--){
+    let r = theCircle.r + random(theCircle.r/5);
+    let xValue = sin(angle*i) * r;
+    let yValue = cos(angle*i) * r;
+    curveVertex(xValue, yValue);
   }
-  // for (let i = numberofPoints; i > 0; i--){
-  //   push();
-    
-  //   rotate(i *(360/numberofPoints-1));
-  //   point(0, theCircle.r);
-  //   curveVertex(0, theCircle.r + theCircle.r * random());
-  //   pop();
-  // }
-  curveVertex(0, theCircle.r);
-  curveVertex(0, theCircle.r);
+  curveVertex(0, theCircle.r + starty);
+  curveVertex(0, theCircle.r + starty);
   endShape();
 }
+
