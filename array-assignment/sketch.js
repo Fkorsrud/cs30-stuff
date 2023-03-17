@@ -9,7 +9,7 @@
 let circles = [];
 let maxDiameter;
 let sizeChange = 150;
-
+let points = 5;
 
 function setup() {
   angleMode(DEGREES);
@@ -54,7 +54,7 @@ function addCircles() {
 }
 
 function displayCircles(theCircle){
-  let numberofPoints = theCircle.d/5;
+  let numberofPoints = theCircle.d/points;
   let angle = 360/numberofPoints;
   
   noStroke();
@@ -72,5 +72,26 @@ function displayCircles(theCircle){
   curveVertex(0, theCircle.r + starty);
   curveVertex(0, theCircle.r + starty);
   endShape();
+}
+
+
+function KeyIsPressed(){
+  
+  if (keyCode(UP_ARROW)){
+    if (points > 0){
+      points --;
+    }
+    for (let i =0; i < circles.length; i++){
+      displayCircles(circles[i]);
+    }
+  }
+  if (keyCode(DOWN_ARROW)){
+    if (points < 15){
+      points ++;
+    }
+    for (let i =0; i < circles.length; i++){
+      displayCircles(circles[i]);
+    }
+  }
 }
 
