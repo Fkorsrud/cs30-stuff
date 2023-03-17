@@ -10,6 +10,7 @@ let circles = [];
 let maxDiameter;
 let sizeChange = 150;
 let points = 5;
+let difference = 5;
 
 function setup() {
   angleMode(DEGREES);
@@ -60,11 +61,11 @@ function displayCircles(theCircle){
   noStroke();
   fill(theCircle.red, theCircle.green, theCircle.blue);
   beginShape();
-  let starty = random(theCircle.r/5);
+  let starty = random(theCircle.r/difference);
   curveVertex(0, theCircle.r+ starty);
   curveVertex(0, theCircle.r + starty);
   for (let i = numberofPoints; i > 0; i--){
-    let r = theCircle.r + random(theCircle.r/5);
+    let r = theCircle.r + random(theCircle.r/difference);
     let xValue = sin(angle*i) * r;
     let yValue = cos(angle*i) * r;
     curveVertex(xValue, yValue);
@@ -75,22 +76,44 @@ function displayCircles(theCircle){
 }
 
 
-function KeyIsPressed(){
-  
-  if (keyCode(UP_ARROW)){
-    if (points > 0){
+function keyPressed(){
+  translate(width/2, height/2);
+  if (keyCode === UP_ARROW){
+    if (points >= 3){
       points --;
+      for (let i =0; i < circles.length; i++){
+        displayCircles(circles[i]);
+      }
     }
-    for (let i =0; i < circles.length; i++){
-      displayCircles(circles[i]);
+    if(points < 3 && points > 0.1){
+      points = points - 0.1;
+      for (let i =0; i < circles.length; i++){
+        displayCircles(circles[i]);
+      }
     }
   }
-  if (keyCode(DOWN_ARROW)){
+  if (keyCode === DOWN_ARROW){
     if (points < 15){
       points ++;
+      for (let i =0; i < circles.length; i++){
+        displayCircles(circles[i]);
+      }
     }
-    for (let i =0; i < circles.length; i++){
-      displayCircles(circles[i]);
+  }
+  if (keyCode === RIGHT_ARROW){
+    if (difference > 1){
+      difference --;
+      for (let i =0; i < circles.length; i++){
+        displayCircles(circles[i]);
+      }
+    }
+  }
+  if (keyCode === LEFT_ARROW){
+    if (difference < 15){
+      difference ++;
+      for (let i =0; i < circles.length; i++){
+        displayCircles(circles[i]);
+      }
     }
   }
 }
