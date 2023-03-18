@@ -18,9 +18,7 @@ function setup() {
   background(random(255), random(255), random(255));
   addCircles();
   translate(width/2, height/2);
-  for (let i =0; i < circles.length; i++){
-    displayCircles(circles[i]);
-  }
+  displayAllcircles();
   
 }
 
@@ -77,44 +75,39 @@ function displayCircles(theCircle){
 
 
 function keyPressed(){
-  translate(width/2, height/2);
+  
   if (keyCode === UP_ARROW){
     if (points >= 3){
       points --;
-      for (let i =0; i < circles.length; i++){
-        displayCircles(circles[i]);
-      }
+      displayAllcircles();
     }
     if(points < 3 && points > 0.1){
       points = points - 0.1;
-      for (let i =0; i < circles.length; i++){
-        displayCircles(circles[i]);
-      }
+      displayAllcircles();
     }
   }
   if (keyCode === DOWN_ARROW){
     if (points < 15){
       points ++;
-      for (let i =0; i < circles.length; i++){
-        displayCircles(circles[i]);
-      }
+      displayAllcircles();
     }
   }
   if (keyCode === RIGHT_ARROW){
     if (difference > 1){
       difference --;
-      for (let i =0; i < circles.length; i++){
-        displayCircles(circles[i]);
-      }
+      displayAllcircles();
     }
   }
   if (keyCode === LEFT_ARROW){
     if (difference < 15){
       difference ++;
-      for (let i =0; i < circles.length; i++){
-        displayCircles(circles[i]);
-      }
+      displayAllcircles();
     }
   }
 }
 
+function displayAllcircles(){
+  for (let i =0; i < circles.length; i++){
+     displayCircles(circles[i]);
+  }
+}

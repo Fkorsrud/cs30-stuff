@@ -6,7 +6,7 @@
 - [Bouncing balls](bouncingballs)
 - [cubic disarray](cubicdisarray)
 - [Terrain Generation](terrain)
-- [perlin and timing] (perlin)
+- [perlin and timing](perlin)
 
 ## Projects
 - [Arrays and Object Notation](array-assignment)
