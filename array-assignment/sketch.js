@@ -17,7 +17,6 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(random(255), random(255), random(255));
   addCircles();
-  translate(width/2, height/2);
   displayAllcircles();
   
 }
@@ -55,7 +54,7 @@ function addCircles() {
 function displayCircles(theCircle){
   let numberofPoints = theCircle.d/points;
   let angle = 360/numberofPoints;
-  
+  translate(width/2, height/2);
   noStroke();
   fill(theCircle.red, theCircle.green, theCircle.blue);
   beginShape();
@@ -111,7 +110,6 @@ function keyPressed(){
 }
 
 function displayAllcircles(){
-  translate(width/2, height/2);
   for (let i =0; i < circles.length; i++){
      displayCircles(circles[i]);
   }
