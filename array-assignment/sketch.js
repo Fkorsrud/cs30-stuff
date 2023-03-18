@@ -93,7 +93,7 @@ function keyPressed(){
     }
   }
   if (keyCode === RIGHT_ARROW){
-    if (difference > 1){
+    if (difference > 0){
       difference --;
       displayAllcircles();
     }
