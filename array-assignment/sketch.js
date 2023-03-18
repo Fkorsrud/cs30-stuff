@@ -91,6 +91,10 @@ function keyPressed(){
       points ++;
       displayAllcircles();
     }
+    if (points < 3){
+      points = points + 0.1;
+      displayAllcircles();
+    }
   }
   if (keyCode === RIGHT_ARROW){
     if (difference > 0){
