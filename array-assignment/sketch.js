@@ -17,7 +17,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(random(255), random(255), random(255));
   addCircles();
-  translate(width/2, height/2);
+
   displayAllcircles();
   
 }
@@ -111,6 +111,7 @@ function keyPressed(){
 }
 
 function displayAllcircles(){
+  translate(width/2, height/2);
   for (let i =0; i < circles.length; i++){
      displayCircles(circles[i]);
   }
