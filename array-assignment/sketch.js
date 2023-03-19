@@ -56,7 +56,8 @@ function addCircles() {
 function displayCircles(theCircle){
   let numberofPoints = theCircle.d/points;
   let angle = 360/numberofPoints;
-  
+  push();
+  translate(width/2, height/2);
   noStroke();
   fill(theCircle.red, theCircle.green, theCircle.blue);
   //translate(width/2, height/2);
@@ -73,7 +74,7 @@ function displayCircles(theCircle){
   curveVertex(0, theCircle.r + starty);
   curveVertex(0, theCircle.r + starty);
   endShape();
-  translate(width/2, height/2);
+  pop();
 }
 
 
