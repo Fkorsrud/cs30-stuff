@@ -15,7 +15,7 @@ let difference = 5;
 function setup() {
   angleMode(DEGREES);
   createCanvas(windowWidth, windowHeight);
-  translate(width/2, height/2);
+  //translate(width/2, height/2);
   background(random(255), random(255), random(255));
   
   addCircles();
