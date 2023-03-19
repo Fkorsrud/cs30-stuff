@@ -59,7 +59,7 @@ function displayCircles(theCircle){
   // translate(width/2, height/2);
   noStroke();
   fill(theCircle.red, theCircle.green, theCircle.blue);
-  //translate(width/2, height/2);
+  translate(width/2, height/2);
   beginShape();
   let starty = random(theCircle.r/difference);
   curveVertex(0, theCircle.r+ starty);
