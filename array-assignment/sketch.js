@@ -16,7 +16,7 @@ function setup() {
   angleMode(DEGREES);
   createCanvas(windowWidth, windowHeight);
   background(random(255), random(255), random(255));
-  
+  translate(width/2, height/2);
   addCircles();
   displayAllcircles();
   
