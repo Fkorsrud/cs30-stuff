@@ -16,14 +16,14 @@ function setup() {
   angleMode(DEGREES);
   createCanvas(windowWidth, windowHeight);
   background(random(255), random(255), random(255));
-  translate(width/2, height/2);
+  
   addCircles();
   displayAllcircles();
   
 }
 
 function draw() {
-  
+  translate(width/2, height/2);
 }
 
 function spawnCircle(diaMeter){
@@ -55,7 +55,7 @@ function addCircles() {
 function displayCircles(theCircle){
   let numberofPoints = theCircle.d/points;
   let angle = 360/numberofPoints;
-  translate(width/2, height/2);
+  
   noStroke();
   fill(theCircle.red, theCircle.green, theCircle.blue);
   beginShape();
