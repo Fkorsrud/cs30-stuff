@@ -146,7 +146,7 @@ function displayAllcircles(){
   translate(width/2, height/2);
   // display every circle
   for (let i =0; i < circles.length; i++){
-     displayCircles(circles[i]);
+    displayCircles(circles[i]);
   }
   pop();
 }
