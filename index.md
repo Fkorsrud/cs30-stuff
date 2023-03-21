@@ -8,6 +8,6 @@
 - [Terrain Generation](terrain)
 - [perlin and timing](perlin)
 - [grid demo](2d-grid)
-
+- [Color game](color-game)
 ## Projects
 - [Arrays and Object Notation](array-assignment)
