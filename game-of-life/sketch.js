@@ -1,5 +1,5 @@
-// Color game
-// march 21, 2023
+// game of life
+// march 22, 2023
 
 const  ROWS = 10;
 const COLS = 10;
