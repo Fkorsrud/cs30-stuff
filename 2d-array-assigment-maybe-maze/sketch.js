@@ -9,7 +9,8 @@ const ROWS = 11;
 const COLS = 11;
 let grid;
 let cellSize;
-
+let theMaze ;
+let newMaze;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -38,11 +39,13 @@ function createRandom2darray(){
     newGrid.push([]);
     for(let x = 0; x< COLS; x++){
       let square = {
-        side1: 0,
-        side2: 0,
-        side3: 0,
-        side4: 0,
+        side1: 1,
+        side2: 1,
+        side3: 1,
+        side4: 1,
         playerHere: 0,
+        
+
       };
       newGrid[y].push(square);
     }
@@ -113,5 +116,15 @@ function displayGrid(){
   }
 }
 
+function createRandomMaze(){
+  newMaze = createRandom2darray();
+  firstX = random(COLS);
+  firstY = random(ROWS);
+  
+}
 
+function addFrontiers(x,y){
+  
+  
+}
 
