@@ -11,6 +11,9 @@ let grid;
 let cellSize;
 let theMaze ;
 let newMaze;
+let inMaze;
+let frontiers;
+let current;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -25,6 +28,7 @@ function setup() {
   grid = createRandom2darray();
   randomizeMaze(grid);
   displayGrid();
+  createRandomMaze();
 }
 
 function draw() {
@@ -117,13 +121,42 @@ function displayGrid(){
 }
 
 function createRandomMaze(){
+  
   newMaze = createRandom2darray();
   firstX = random(COLS);
   firstY = random(ROWS);
+  maze = [];
+  // let place = [firstX,firstY];
+  // maze.push(place);
+  addFrontiers(firstX+1, fristY);
+  addFrontiers(firstX - 1, firstY);
+  addFrontiers(firstX, firstY +1);
+  addFrontiers(firstX, firstY -1)
   
+  while(frontiers.length > 0){
+    let ranNum = random(100)
+    if (ranNum > 75){
+      current = frontiers[0];
+    }
+    else if (ranNum > 50){
+      current = frontiers[1];
+    }
+    else if (ranNum > 25){
+      current = frontiers[2];
+    }
+    else{
+      current = frontiers[3];
+    }
+  }
+  
+
 }
 
 function addFrontiers(x,y){
+  if (x >= 0 && x < COLS && y >=0 && y < ROWS){
+    let place = [x,y];
+    frontiers.push(place);
+  }
   
   
 }
