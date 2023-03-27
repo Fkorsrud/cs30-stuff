@@ -13,7 +13,7 @@ let cellSize;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(220)
+  background(220);
 
   if(width < height){
     cellSize = width/ROWS;
@@ -93,7 +93,7 @@ function randomizeSides(asquare){
 }
 
 function displayGrid(){
-  fill("black")
+  fill("black");
   for(let y =0; y<ROWS; y++){
     for(let x=0; x<COLS; x++){
       if(grid[y][x].side1 === 1){
