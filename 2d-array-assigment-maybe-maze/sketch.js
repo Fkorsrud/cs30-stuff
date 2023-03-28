@@ -12,18 +12,20 @@ let cellSize;
 let theMaze ;
 let newMaze;
 let inMaze;
-let neibours;
+let neibours = [];
 let current;
 let oldSpot;
 
 let firstX;
 let firstY;
-let maze;
+let maze = [];
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(220);
+
+  
 
   if(width < height){
     cellSize = width/ROWS;
@@ -126,56 +128,17 @@ function displayGrid(){
   }
 }
 
-// function createRandomMaze(){
-  
-//   newMaze = createRandom2darray();
-//   firstX = random(COLS);
-//   firstY = random(ROWS);
-//   maze = [];
-//   // let place = [firstX,firstY];
-//   // maze.push(place);
-//   addFrontiers(firstX+1, firstY);
-//   addFrontiers(firstX - 1, firstY);
-//   addneibours(firstX, firstY +1);
-//   addneibours(firstX, firstY -1);
-  
-//   while(neibours.length > 0){
-//     let ranNum = random(100);
-//     if (ranNum > 75){
-//       current = neibours[0];
-//     }
-//     else if (ranNum > 50){
-//       current = neibours[1];
-//     }
-//     else if (ranNum > 25){
-//       current = neibours[2];
-//     }
-//     else{
-//       current = neibours[3];
-//     }
-//   }
-  
-
-// }
-
-// function addneibours(x,y){
-//   if (x >= 0 && x < COLS && y >=0 && y < ROWS){
-//     let place = [x,y];
-//     neibours.push(place);
-//   }
-  
-  
-// }
 
 
 function createRandomMaze(){
   
-  firstX =random(ROWS);
-  firstY = random(COLS);
+  firstX = round(random(ROWS));
+  firstY = round(random(COLS));
   current =[firstX, firstY];
   addNeighbours(firstX, firstY);
   while(neibours.length > 0){
     pickNeibour(current[0], current[1]);
+    addNeighbours(firstX, firstY);
   }
 }
 
@@ -187,42 +150,62 @@ function addNeighbours(x,y){
 }
 
 function addToNeibours(x,y){
-  if (x >= 0 && x < COLS && y >=0 && y < ROWS && grid[y][x].inMaze === false){
+  if (x >= 0 && x < COLS && y >=0 && y < ROWS && grid[y][x].inmaze === false){
     let currentPlace = [y,x];
     neibours.push(currentPlace);
+    
   }
 }
+
 
 function pickNeibour(x,y){
+  let neibourPicked = 0;
   let ranNum = random(100);
+  while (neibourPicked === 0){
+    if (x+1 <= 0 && x+1 > COLS && y <= 0 && y >  ROWS && x-1 <= 0 && x-1 > COLS && x >= 0 && x > COLS && y+1 <= 0 && y+1 > ROWS && y-1 <= 0 && y-1 > ROWS ){
+      current = maze[maze.length-2];
+      neibourPicked = 1;
+    }
+    else if (ranNum >= 75 && x+1 >= 0 && x+1 < COLS && y >=0 && y < ROWS && !grid[y][x+1].inmaze){
+      oldSpot = current;
+      current[0] = current[0] +1;
+      removeWalls(oldSpot[0], oldSpot[1], current[0], current[1]);
+      neibourPicked =1;
+    }
+    else if (ranNum >= 50 && x-1 >= 0 && x-1 < COLS && y >=0 && y < ROWS && !grid[y][x-1].inmaze){
+      oldSpot = current;
+      current[0] = current[0] -1;
+      removeWalls(oldSpot[0], oldSpot[1], current[0], current[1]);
+      neibourPicked =1;
+    }
+    else if (ranNum >= 25 && x >= 0 && x < COLS && y+1 >=0 && y+1 < ROWS && !grid[y+1][x]){
+      oldSpot = current;
+      current[1] = current[1] +1;
+      removeWalls(oldSpot[0], oldSpot[1], current[0], current[1]);
+      neibourPicked =1;
+    }
+    else if (ranNum >= 0 && x >= 0 && x < COLS && y-1 >=0 && y-1 < ROWS && !grid[y-1][x].inmaze){
+      oldSpot = current;
+      current[1] = current[1] -1;
+      removeWalls(oldSpot[0], oldSpot[1], current[0], current[1]);
+      neibourPicked =1;
+    }
+    else if (grid[y-1][x].inmaze &&  grid[y+1][x].inmaze && grid[y][x-1].inmaze && grid[y][x+1].inmaze ){
+      current = maze[maze.length-2];
+      neibourPicked =1;
+    }
+    else{
+      ranNum = random(100);
+    }
+  }
   
-  if (ranNum > 75 && grid[y][x+1].inmaze === false){
-    oldSpot = current;
-
-    current[0] = current[0] +1;
-    removeWalls(oldSpot[0], oldSpot[1], current[0], current[1]);
-  }
-  else if (ranNum > 50 && grid[y][x-1].inmaze === false){
-    oldSpot = current;
-    current[0] = current[0] -1;
-    removeWalls(oldSpot[0], oldSpot[1], current[0], current[1]);
-  }
-  else if (ranNum > 25 && grid[y+1][x].inmaze === false){
-    oldSpot = current;
-    current[1] = current[1] +1;
-    removeWalls(oldSpot[0], oldSpot[1], current[0], current[1]);
-  }
-  else if (ranNum > 0 && grid[y-1][x].inmaze === false){
-    oldSpot = current;
-    current[1] = current[1] -1;
-    removeWalls(oldSpot[0], oldSpot[1], current[0], current[1]);
-  }
-  else if (grid[y-1][x].inmaze === true &&  grid[y+1][x].inmaze === true && grid[y][x-1].inmaze === true && grid[y][x+1].inmaze === true){
-    current = maze[maze.length-1];
-  }
+  
   maze.push(oldSpot);
+  grid[oldSpot[0]][oldSpot[1]].inmaze = true;
   
 }
+
+
 function removeWalls(x1, y1, x2, y2){
   if (x1 !== x2){
     if (y1 -1 === y2){
