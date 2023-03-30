@@ -10,6 +10,7 @@
 - [grid demo](2d-grid)
 - [Color game](color-game)
 - [game of life](game-of-life)
-- []
+- [character in grid](character-in-grid)
+- [sudoku](sudoku)
 ## Projects
 - [Arrays and Object Notation](array-assignment)

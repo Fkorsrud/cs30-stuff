@@ -18,14 +18,12 @@ let oldSpot;
 
 let firstX;
 let firstY;
-let maze = [];
+
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(220);
-
-  
 
   if(width < height){
     cellSize = width/ROWS;
@@ -59,7 +57,7 @@ function createRandom2darray(){
         side4: 1,
         playerHere: 0,
         inmaze: false,
-
+        isneibour: false,
       };
       newGrid[y].push(square);
     }
@@ -102,10 +100,10 @@ function createRandomMaze(){
   current =[firstX, firstY];
   let mazecount;
   let stop = 0;
-  addNeighbours(firstX, firstY);
+  // addNeighbours(firstX, firstY);
   grid[firstY][firstX].inmaze = true;
   
-  while(stop === 0){
+  for (let i= 0; i<10; i++){
     mazecount = 0;
     for (let y= 0; y < ROWS; y++){
       for(let x = 0; x < COLS; x++){
@@ -118,30 +116,25 @@ function createRandomMaze(){
       stop = 1;
     }
     else{
-      addNeighbours(current[0], current[1]);
+      // addNeighbours(current[0], current[1]);
       pickNeibour(current[0], current[1]);
     }
-    
-  }
-
-  
-}
-
-function addNeighbours(x,y){
-  addToNeibours(x-1, y);
-  addToNeibours(x+1, y);
-  addToNeibours(x, y-1);
-  addToNeibours(x, y+1);
-}
-
-function addToNeibours(x,y){
-  if (x >= 0 && x < COLS && y >=0 && y < ROWS && grid[y][x].inmaze === false){
-    // let currentPlace = [x,y];
-    // neibours.push(currentPlace);
-    grid[y][x].inmaze = true;
-    
   }
 }
+
+// function addNeighbours(x,y){
+//   addToNeibours(x-1, y);
+//   addToNeibours(x+1, y);
+//   addToNeibours(x, y-1);
+//   addToNeibours(x, y+1);
+// }
+
+// function addToNeibours(x,y){
+//   if (x >= 0 && x < COLS && y >=0 && y < ROWS && grid[y][x].inmaze === false){
+//     grid[y][x].isneibour = true;
+    
+//   }
+// }
 
 
 
@@ -151,14 +144,15 @@ function pickNeibour(x,y){
   let neibour;
 
 
-  while (neibourPicked === 0){    
+  // while (neibourPicked === 0){ 
+  for(let i = 0; i<5; i++){   
     if(ranNum >= 75){
       neibour = 1;
     }
-    else if (ranNum >= 50){
+    else if (ranNum > 50){
       neibour = 2;
     }
-    else if (ranNum >= 25){
+    else if (ranNum > 25){
       neibour = 3;
     }
     else {
@@ -170,6 +164,7 @@ function pickNeibour(x,y){
         oldSpot = current;
         current[0] = current[0] +1;
         grid[oldSpot[0]][oldSpot[1]].inmaze = true;
+        grid[oldSpot[0]][oldSpot[1]].isneibour = false;
         removeWalls(oldSpot[0], oldSpot[1], current[0], current[1]);
         neibourPicked = 1;
       }
@@ -183,6 +178,7 @@ function pickNeibour(x,y){
         oldSpot = current;
         current[0] = current[0] -1;
         grid[oldSpot[0]][oldSpot[1]].inmaze = true;
+        grid[oldSpot[0]][oldSpot[1]].isneibour = false;
         removeWalls(oldSpot[0], oldSpot[1], current[0], current[1]);
         neibourPicked = 1;
       }
@@ -196,6 +192,7 @@ function pickNeibour(x,y){
         oldSpot = current;
         current[1] = current[1] +1;
         grid[oldSpot[0]][oldSpot[1]].inmaze = true;
+        grid[oldSpot[0]][oldSpot[1]].isneibour = false;
         removeWalls(oldSpot[0], oldSpot[1], current[0], current[1]);
         neibourPicked = 1;
       }
@@ -208,6 +205,7 @@ function pickNeibour(x,y){
       if (grid[y-1][x].inmaze === false){
         oldSpot = current;
         grid[oldSpot[0]][oldSpot[1]].inmaze = true;
+        grid[oldSpot[0]][oldSpot[1]].isneibour = false;
         current[1] = current[1] -1;
         removeWalls(oldSpot[0], oldSpot[1], current[0], current[1]);
         neibourPicked = 1;
@@ -219,6 +217,7 @@ function pickNeibour(x,y){
     }
     else if (grid[y-1][x].inmaze &&  grid[y+1][x].inmaze && grid[y][x-1].inmaze && grid[y][x+1].inmaze ){
       current = oldSpot;
+      
       neibourPicked = 1;
     }
     
