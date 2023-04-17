@@ -12,6 +12,7 @@
 - [game of life](game-of-life)
 - [character in grid](character-in-grid)
 - [sudoku](sudoku)
+- [Walker OOP](walker)
 ## Projects
 - [Arrays and Object Notation](array-assignment)
 - [2d Array assignment](2d-array-assignment-good-copy)
