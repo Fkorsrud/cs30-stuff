@@ -15,8 +15,9 @@
 - [Walker OOP](walker)
 - [fireworks OOP](fireworks)
 - [ball array oop](ballarray)
-- [Fractal Circles] (fractalcircles)
-- [fractal triangle] (sierpinskitriangle)
+- [Fractal Circles](fractalcircles)
+- [fractal triangle](sierpinskitriangle)
+
 ## Projects
 - [Arrays and Object Notation](array-assignment)
 - [2d Array assignment](2d-array-assignment-good-copy)
