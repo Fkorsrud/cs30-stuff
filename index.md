@@ -17,6 +17,7 @@
 - [ball array oop](ballarray)
 - [Fractal Circles](fractalcircles)
 - [fractal triangle](sierpinskitriangle)
+- [usingSound](usingsounds)
 
 ## Projects
 - [Arrays and Object Notation](array-assignment)
